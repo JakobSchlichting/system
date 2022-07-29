@@ -6,3 +6,8 @@ window:
     y: 1
   dynamic_padding: false
   opacity: 0.9
+
+font:
+  normal:
+    family: FiraCode Nerd Font
+    style: Medium
