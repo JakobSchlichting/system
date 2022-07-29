@@ -246,16 +246,17 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-    xmproc0 <- spawnPipe "xmobar -x 0"
-    spawnOnce "nitrogen --restore"
-    spawnOnce "compton"
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "compton &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do
+    xmproc <- spawnPipe "xmobar &"
+    xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

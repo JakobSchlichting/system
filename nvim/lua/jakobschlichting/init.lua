@@ -3,6 +3,7 @@ JakobSchlichtingGroup = augroup('JakobSchlichting', {})
 
 require('jakobschlichting.packer')
 require('jakobschlichting.set')
+require('jakobschlichting.neogit')
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
