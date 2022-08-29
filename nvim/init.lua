@@ -1,1 +1,1 @@
-require('jakobschlichting')
+require("jakobschlichting")

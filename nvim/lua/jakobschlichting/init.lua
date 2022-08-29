@@ -3,7 +3,7 @@ JakobSchlichtingGroup = augroup('JakobSchlichting', {})
 
 require('jakobschlichting.packer')
 require('jakobschlichting.set')
-require('jakobschlichting.neogit')
+-- require('jakobschlichting.neogit')
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -35,3 +35,4 @@ autocmd({"BufWritePre"}, {
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
+
