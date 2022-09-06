@@ -7,3 +7,7 @@ local nmap = Remap.nmap
 
 -- Open file explorer
 nnoremap("<leader>e", ":Ex<CR>")
+
+-- File movement
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
