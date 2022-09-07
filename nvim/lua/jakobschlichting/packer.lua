@@ -20,6 +20,8 @@ return require("packer").startup(function()
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
+    use("williamboman/mason.nvim")
+    use("williamboman/mason-lspconfig.nvim")
 
     -- Lua
     use("L3MON4D3/LuaSnip")
