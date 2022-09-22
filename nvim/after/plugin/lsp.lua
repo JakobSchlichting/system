@@ -82,13 +82,22 @@ require("lspconfig").tsserver.setup(config())
 
 require("lspconfig").ccls.setup(config())
 
-require("lspconfig").jedi_language_server.setup(config())
+-- require("lspconfig").jedi_language_server.setup(config())
 
 require("lspconfig").svelte.setup(config())
 
 require("lspconfig").solang.setup(config())
 
 require("lspconfig").cssls.setup(config())
+
+require("lspconfig").dockerls.setup(config())
+
+require("lspconfig").pyright.setup(config())
+-- require("lspconfig").java_language_server.setup(config())
+
+require("lspconfig").omnisharp.setup(config({
+    cmd = { "/Users/jakobschlichting/tools/omnisharp-osx/run", "--languageserver" , "--hostPID", tostring(pid)}
+}))
 
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },

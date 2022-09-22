@@ -1,7 +1,7 @@
 return require("packer").startup(function()
     -- Manage the manager
     use("wbthomason/packer.nvim")
-    
+
     use("sbdchd/neoformat")
 
     -- Colorscheme and Theme
