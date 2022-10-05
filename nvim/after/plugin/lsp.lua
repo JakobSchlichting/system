@@ -2,8 +2,30 @@ local Remap = require("jakobschlichting.keymap")
 local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 
-local sumneko_root_path = "/home/jakob/tools/sumneko/lua-language-server"
+local SUMNEKO_ENV = "SUMNEKO_ROOT_PATH"
+local OMNISHARP_ENV = "OMNISHARP_PATH"
+
+local get_sumneko_path = function ()
+    local path = os.getenv(SUMNEKO_ENV)
+    if path == nil then
+        print("WARNING: '" .. SUMNEKO_ENV .. "' env var not defined")
+        return os.getenv("HOME") .. "/tools/lua-language-server"
+    end
+    return path
+end
+
+local get_omnisharp_path = function ()
+    local path = os.getenv(OMNISHARP_ENV)
+    if path == nil then
+        print("WARNING: '" .. OMNISHARP_ENV .. "' env var not defined")
+        return os.getenv("HOME") .. "/tools/omnisharp_osx/run"
+    end
+    return path
+end
+
+local sumneko_root_path = get_sumneko_path()
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
+local omnisharp_path = get_omnisharp_path()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -96,7 +118,7 @@ require("lspconfig").pyright.setup(config())
 -- require("lspconfig").java_language_server.setup(config())
 
 require("lspconfig").omnisharp.setup(config({
-    cmd = { "/Users/jakobschlichting/tools/omnisharp-osx/run", "--languageserver" , "--hostPID", tostring(pid)}
+    cmd = { omnisharp_path, "--languageserver" , "--hostPID", tostring(pid)}
 }))
 
 require("lspconfig").gopls.setup(config({
