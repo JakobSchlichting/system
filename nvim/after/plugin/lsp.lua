@@ -8,7 +8,6 @@ local OMNISHARP_ENV = "OMNISHARP_PATH"
 local get_sumneko_path = function ()
     local path = os.getenv(SUMNEKO_ENV)
     if path == nil then
-        print("WARNING: '" .. SUMNEKO_ENV .. "' env var not defined")
         return os.getenv("HOME") .. "/tools/lua-language-server"
     end
     return path
@@ -17,7 +16,6 @@ end
 local get_omnisharp_path = function ()
     local path = os.getenv(OMNISHARP_ENV)
     if path == nil then
-        print("WARNING: '" .. OMNISHARP_ENV .. "' env var not defined")
         return os.getenv("HOME") .. "/tools/omnisharp_osx/run"
     end
     return path
@@ -120,6 +118,7 @@ require("lspconfig").pyright.setup(config())
 require("lspconfig").omnisharp.setup(config({
     cmd = { omnisharp_path, "--languageserver" , "--hostPID", tostring(pid)}
 }))
+require("lspconfig").csharp_ls.setup(config())
 
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
