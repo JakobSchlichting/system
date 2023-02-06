@@ -41,3 +41,9 @@ luac.out
 
 # backup
 nvim.bak
+
+# MacOS
+.DS_Store
+
+# Neovim config
+packer_compiled.lua
