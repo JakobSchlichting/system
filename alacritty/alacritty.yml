@@ -2,12 +2,11 @@ window:
   padding:
     x: 1
     y: 1
-  dynamic_padding: false
   opacity: 0.9
 
 font:
   normal:
-    family: FiraCode Nerd Font
-    style: Medium
-  size: 18
+    family: Fira Code Nerd Font
+    style: Bold
+  size: 16
 
