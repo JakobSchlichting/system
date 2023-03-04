@@ -4,7 +4,7 @@
 source ~/.cargo/env
 
 # Load Haskell toolchain
-[ -f "/home/jakobschlichting/.ghcup/env" ] && source "/home/jakobschlichting/.ghcup/env" # ghcup-env
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 
 # NodeJS toolchain
 eval "$(fnm env --use-on-cd)"
