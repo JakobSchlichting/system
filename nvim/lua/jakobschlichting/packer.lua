@@ -100,6 +100,11 @@ return require("packer").startup(function()
 		end
 	}
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
     -- GIT integration
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
