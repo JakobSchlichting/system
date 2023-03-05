@@ -1,10 +1,10 @@
-local augroup = vim.api.nvim_create_augroup
-JakobSchlichtingGroup = augroup('JakobSchlichting', {})
-
 require('jakobschlichting.packer')
 require('jakobschlichting.keymap')
 require('jakobschlichting.vim-opts')
 -- require('jakobschlichting.neogit')
+
+local augroup = vim.api.nvim_create_augroup
+JakobSchlichtingGroup = augroup('JakobSchlichting', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
