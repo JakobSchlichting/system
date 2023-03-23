@@ -9,10 +9,9 @@ alias cls='clear'
 alias python='python3'
 
 # working with directory
-alias ll='ls -la'
-alias la='ls -A'
-alias l='ls -CF'
-alias dir='ls -la'
+alias ls='exa'
+alias ll='exa -la'
+alias dir='exa'
 alias ....='cd ../..'
 alias ......='cd ../../..'
 alias ........='cd ../../../..'
