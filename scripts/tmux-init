@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ -z $TMUX ]; then
+    echo "init tmux"
+    if [ -z $(tmux ls) ]; then
+        cd $HOME && tmux new -s $(whoami)
+    else
+        tmux attach
+    fi
+fi
