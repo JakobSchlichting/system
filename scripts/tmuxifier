@@ -1,0 +1,20 @@
+#!/bin/sh
+
+session=$(find ~/source/repos ~/source/lab ~/tools -mindepth 1 -maxdepth 1 -type d | fzf)
+
+if [[ -z $session ]]; then
+    echo "No folder selected! Exiting..." >&2
+    exit 0
+fi
+
+session_basename=$(basename "$session" | tr . _)
+
+if ! tmux has-session -t "$session_basename" 2> /dev/null; then
+    tmux new-session -s "$session_basename" -c "$session" -d
+fi
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux attach -t "$session_basename"
+else
+    tmux switch-client -t "$session_basename"
+fi
