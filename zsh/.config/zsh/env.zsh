@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Load rust toolchain and cargo applicaations
+# Load rust toolchain and cargo applications
 source ~/.cargo/env
 
 # Load Haskell toolchain
@@ -9,5 +9,8 @@ source ~/.cargo/env
 # NodeJS toolchain
 eval "$(fnm env --use-on-cd)"
 
-#export PATH=$PATH:~/bin:~/Qt/6.2.4/macos/bin:~/tools/system/scripts:/usr/local/opt/libpq/bin
-export GITHUB_PAT=""
+# tmuxifier shell binding
+bindkey -s ^f "tmuxifier\n"
+
+# add custom script to path
+export PATH="$PATH:$HOME/.local/bin"
