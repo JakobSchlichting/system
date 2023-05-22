@@ -4,4 +4,8 @@ compinit -d ~/.cache/zcompdump
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive tab completion
 
-eval "$(fnm env --use-on-cd)"
+# OpenShift autocomplete, when oc exists
+if [ $commands[oc] ]; then                                                    
+    source <(oc completion zsh)                                              
+    compdef _oc oc            
+fi
