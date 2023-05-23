@@ -3,13 +3,15 @@
 
 # Load rust toolchain and cargo applications
 export CARGO_HOME="$HOME/.cargo"
-source ~/.cargo/env
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 # Load Haskell toolchain
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 
 # NodeJS toolchain
-eval "$(fnm env --use-on-cd)"
+if [ $commands[fnm] ]; then
+    eval "$(fnm env --use-on-cd)"
+fi
 
 # tmuxifier shell binding
 bindkey -s ^f "tmuxifier\n"
