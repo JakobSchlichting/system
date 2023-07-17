@@ -4,6 +4,9 @@
 # Load rust toolchain and cargo applications
 export CARGO_HOME="$HOME/.cargo"
 [ -f ~/.cargo/env ] && source ~/.cargo/env
+if [ $command[rustc] ]; then
+    export RUSTC_WRAPPER="sccache"
+fi
 
 # Load Haskell toolchain
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
