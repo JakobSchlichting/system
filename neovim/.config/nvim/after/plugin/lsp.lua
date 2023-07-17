@@ -56,9 +56,13 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+require'lspconfig'.sourcekit.setup{
+    root_dir = require'lspconfig/util'.root_pattern( "Package.swift", "*.xcodeproj" ),
+}
 
 lsp.setup()
 
+-- enable diagnostics
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
