@@ -35,6 +35,10 @@ return require("packer").startup(function()
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 	use('nvim-treesitter/playground')
 
+    -- forest
+    -- A slightly modified fork of "git-worktree.nvim" by @ThePrimeagen
+    use('JakobSchlichting/forest.nvim')
+
 	-- Harpoon
 	use('theprimeagen/harpoon')
 
