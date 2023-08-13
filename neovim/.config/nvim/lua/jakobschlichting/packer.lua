@@ -115,6 +115,6 @@ return require("packer").startup(function()
     -- Orgmode
     use { 'nvim-orgmode/orgmode' }
 
-    -- GitHub Copilot
-    use { 'github/copilot.vim' }
+    -- -- GitHub Copilot
+    -- use { 'github/copilot.vim' }
 end);
