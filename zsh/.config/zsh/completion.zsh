@@ -9,3 +9,8 @@ if [ $commands[oc] ]; then
     source <(oc completion zsh)
     compdef _oc oc
 fi
+
+# Kubernetes completion, when kubectl exists
+if [ $command[kubectl] ]; then
+    source <(kubectl completion zsh)
+fi
