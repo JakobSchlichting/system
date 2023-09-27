@@ -47,3 +47,6 @@ nvim.bak
 
 # Neovim config
 packer_compiled.lua
+
+# Tmux tmp packages
+tmux/.config/tmux/plugins
