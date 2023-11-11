@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: JetBrainsMonoNL Nerd Font
+    family: FiraCode Nerd Font
   size: 16
 
 colors:
