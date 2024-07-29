@@ -6,4 +6,4 @@ source "$HOME/.config/zsh/completion.zsh"
 
 eval "$(starship init zsh)"
 
-neofetch
+fastfetch
