@@ -17,7 +17,7 @@ if [ $commands[fnm] ]; then
 fi
 
 # tmuxifier shell binding
-bindkey -s ^f "tmuxifier\n"
+bindkey -s "^f" "tmuxifier\n"
 
 # add custom script to path
 export PATH="$PATH:$HOME/.local/bin"

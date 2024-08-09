@@ -9,6 +9,6 @@ alias cls='clear'
 alias python='python3'
 
 # working with directory
-alias ls='exa'
-alias ll='exa -la'
-alias dir='exa'
+alias ls='eza'
+alias ll='eza -la'
+alias dir='eza'
