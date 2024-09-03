@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pgrep -x .waybar-wrapped | xargs kill -9
+while pgrep -x .waybar-wrapped >/dev/null; do sleep 1; done
+waybar &

@@ -1,0 +1,33 @@
+* {
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #24283b; /* Tokyo Night Storm background */
+    color: #a9b1d6; /* Text color */
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #a9b1d6;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    background-color: #414868; /* Highlight for active workspace */
+    border-bottom: 3px solid #7aa2f7; /* Highlight color */
+}
+
+#workspaces button:hover {
+    background: #1a1b26; /* Hover background */
+    border-bottom: 3px solid #7aa2f7;
+}
+
+/* Adjust other modules like network, pulseaudio, clock if needed */
