@@ -1,0 +1,121 @@
+---
+- name: setup machine
+  hosts: localhost
+  tasks:
+    - name: install system utils
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - gcc
+          - make
+          - cmake
+          - ninja-build
+          - git
+          - neovim
+          - lua
+          - luarocks
+          - stow
+          - tmux
+          - rustup
+          - podman
+          - toolbox
+          - flatpak
+          - zsh
+          - eza
+          - fastfetch
+          - openssl-devel
+          - apr
+          - apr-util
+          - zlib
+          - zlib-devel
+        state: latest
+    - name: run rustup
+      ansible.builtin.shell:
+        cmd: rustup-init -qy --no-modify-path --default-toolchain none
+        creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/cargo"
+    - name: install rust default  toolchain
+      ansible.builtin.command:
+        cmd: rustup toolchain install stable
+        creates: "$HOME/.cargo/bin/sccache"
+    - name: install sccache
+      ansible.builtin.shell:
+        cmd: RUSTC_WRAPPER="" cargo install sccache --locked
+        creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/sccache"
+    - name: symlink configuration files
+      ansible.builtin.shell:
+        chdir: ../
+        cmd: stow --target=$HOME home
+    - name: set zsh as default shell
+      become: true
+      ansible.builtin.user:
+        name: jakobschlichting
+        shell: /bin/zsh
+    - name: install programs from cargo
+      community.general.cargo:
+        locked: true
+        name:
+          - starship
+        state: latest
+    - name: BRAVE add repository
+      become: true
+      ansible.builtin.yum_repository:
+        name: brave-browser
+        description: Repo for thje Brave Browser
+        baseurl: https://brave-browser-rpm-release.s3.brave.com/$basearch
+        gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    - name: add copr for swaync
+      become: true
+      community.general.copr:
+        name: erikreider/SwayNotificationCenter
+    - name: install hyprland
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - hyprland
+          - xdg-desktop-portal-hyprland
+          - hypridle
+          - hyprlock
+          - hyprcursor
+          - hyprpicker
+          - hyprpaper
+          - SwayNotificationCenter
+          - pipewire
+          - wireplumber
+          - polkit-kde
+          - waybar
+          - rofi
+        state: latest
+    - name: install gui applications
+      become: true
+      ansible.builtin.dnf:
+        name: 
+          - brave-browser
+          - alacritty
+          - kitty
+          - wireshark
+        state: latest
+    - name: add flathub as flatpak source
+      become: true
+      community.general.flatpak_remote:
+        name: flathub
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    - name: install proton beta programm
+      become: true
+      ansible.builtin.dnf:
+        name: https://proton.me/download/mail/linux/1.2.1/ProtonMail-desktop-beta.rpm
+        disable_gpg_check: true
+        state: present
+    - name: install flatpak's
+      community.general.flatpak:
+        name:
+          - us.zoom.Zoom
+          - md.obsidian.Obsidian
+          - com.obsproject.Studio
+          - com.discordapp.Discord
+          - net.lutris.Lutris
+          - org.onlyoffice.desktopeditors
+          - org.zotero.Zotero
+          - in.cinny.Cinny
+          - one.flipperzero.qFlipper
+          - com.valvesoftware.Steam
+          - com.teamspeak.TeamSpeak
