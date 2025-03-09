@@ -1,6 +1,15 @@
 #!/bin/sh
+# Author: Jakob Schlichting
+# Description:  This is a small convinience script which enables opening projects
+#               utilizing TMUX. The directories searched can be defined by setting the
+#               variable TMUXIFIER_SOURCE_DIRS, with a spache seperated list.
 
-session=$(find ~/source/repos ~/source/lab ~/tools -mindepth 1 -maxdepth 1 -type d | fzf)
+if [ -z "${TMUXIFIER_SOURCE_DIRS}"]
+then
+    TMUXIFIER_SOURCE_DIRS="$HOME/source"
+fi
+
+session=$(find $TMUXIFIER_SOURCE_DIRS -mindepth 1 -maxdepth 1 -type d | fzf)
 
 if [[ -z $session ]]; then
     echo "No folder selected! Exiting..." >&2
@@ -9,11 +18,13 @@ fi
 
 session_basename=$(basename "$session" | tr . _)
 
-if ! tmux has-session -t "$session_basename" 2> /dev/null; then
+if ! tmux has-session -t "$session_basename" 2> /dev/null
+then
     tmux new-session -s "$session_basename" -c "$session" -d
 fi
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]
+then
     tmux attach -t "$session_basename"
 else
     tmux switch-client -t "$session_basename"
