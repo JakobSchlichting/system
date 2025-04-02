@@ -50,3 +50,11 @@ packer_compiled.lua
 
 # Tmux tmp packages
 tmux/.config/tmux/plugins
+
+# Directories which may exist due to optimistic stow symlinks
+home/.cargo/.global-cache
+home/.cargo/.package-cache
+home/.cargo/.package-cache-mutate
+home/.cargo/registry/
+home/.local/share/
+home/.local/state/
