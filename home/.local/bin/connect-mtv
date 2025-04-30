@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh -i $HOME/.ssh/id_ed25519.hetzner root@162.55.210.251

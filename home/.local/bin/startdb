@@ -1,0 +1,24 @@
+#!/bin/sh
+MARIA_VOLUME="local_maria"
+MARIA_CONTAINER="maria_db"
+if [ -z $(podman volume list --noheading --format "{{.Name}}" | grep $MARIA_VOLUME) ]
+then
+    podman volume create --label app=maria --label type=db $MARIA_VOLUME
+fi
+if [ ! -z $(podman container list --format "{{.Names}}" | grep $MARIA_CONTAINER) ]
+then
+    echo "DB allready running"
+    exit 1
+fi
+if [ -z $(podman container list --all --format "{{.Names}}" | grep $MARIA_CONTAINER) ]
+then
+    #TODO: keep developing in line 14
+    podman container create --name $MARIA_CONTAINER \
+        --label app=maria --label type=db \
+        -e MARIADB_ROOT_PASSWORD=init \
+        -p 3306:3306 \
+        -v $MARIA_VOLUME:/var/lib/mysql:Z \
+        docker.io/mariadb:latest
+fi
+podman container start $MARIA_CONTAINER
+echo "Done"
