@@ -13,6 +13,7 @@
         git
         stow
         fastfetch
+        fzf
         neovim
         kitty
         alacritty
