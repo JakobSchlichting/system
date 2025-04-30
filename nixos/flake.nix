@@ -52,9 +52,9 @@
                 nix-flatpak.nixosModules.nix-flatpak
                 ./kernel.nix
                 ./configuration.home_workstation.nix
-		./hardware_configuration.home_workstation.nix
+		        ./hardware_configuration.home_workstation.nix
                 ./hyprland.nix
-		./display_manager.nix
+		        ./display_manager.nix
                 ./dev_tools.nix
                 ./shell.nix
                 # ./nvidia.nix
@@ -75,6 +75,7 @@
                 ./languages.nix
                 ./user.nix
                 ./legcord.nix
+                ./steam.nix
             ];
         };
 # INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
