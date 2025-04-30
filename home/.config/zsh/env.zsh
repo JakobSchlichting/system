@@ -23,7 +23,7 @@ bindkey -s "^f" "tmuxifier\n"
 export PATH="$PATH:$HOME/.local/bin"
 
 # Golang
-export PATH="$PATH:$HOME/tools/go/bin"
+export PATH="$PATH:$HOME/tools/go/bin:/usr/local/go/bin:$HOME/go/bin"
 
 # Dotnet tooling
 export PATH="$PATH:$HOME/.dotnet/tools"
