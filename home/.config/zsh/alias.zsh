@@ -9,7 +9,13 @@ then
 fi
 
 # clear terminal
-alias cls='clear'
+if command -v fastfetch &> /dev/null
+then
+    alias clear='clear && fastfetch'
+    alias cls='clear && fastfetch'
+else
+    alias cls='clear'
+fi
 
 # python
 alias python='python3'
