@@ -2,7 +2,8 @@
 # Author: Jakob Schlichting
 # Description:  This is a small convinience script which enables opening projects
 #               utilizing TMUX. The directories searched can be defined by setting the
-#               variable TMUXIFIER_SOURCE_DIRS, with a spache seperated list.
+#               variable TMUXIFIER_SOURCE_DIRS, with a space seperated list.
+# Honorable metion: [ThePrimeagen](https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer) for the insperation
 
 if [ -z "${TMUXIFIER_SOURCE_DIRS}"]
 then
