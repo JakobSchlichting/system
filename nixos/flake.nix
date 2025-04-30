@@ -13,7 +13,40 @@
         ];
         nixosConfigurations.socworkstation = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-	    specialArgs = { inherit inputs; };
+	        specialArgs = { inherit inputs; };
+            modules = [
+                nix-flatpak.nixosModules.nix-flatpak
+                ./bootloader.nix
+                ./kernel.nix
+                ./configuration.nix
+                ./hyprland.nix
+		        ./display_manager.nix
+                ./dev_tools.nix
+                ./shell.nix
+                ./nvidia.nix
+                ./opengl.nix
+                ./bluetooth.nix
+                ./font.nix
+                ./time.nix
+                ./network.nix
+                ./network_anonymous.nix
+                ./sound.nix
+                ./rust.nix
+                ./internationalisation.nix
+                ./artificial_intelligence.nix
+                ./flatpak.nix
+                ./usb.nix
+                ./garbage_collection.nix
+                ./lsp.nix
+                ./languages.nix
+                ./user.nix
+                ./legcord.nix
+            ];
+        };
+# INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
+        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+	        specialArgs = { inherit inputs; };
             modules = [
                 nix-flatpak.nixosModules.nix-flatpak
                 ./bootloader.nix

@@ -22,5 +22,7 @@
         ansible-language-server
         hyprls
         htmx-lsp
+        nixd
+        nixdoc
     ];
 }

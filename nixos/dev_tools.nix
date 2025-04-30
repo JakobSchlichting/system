@@ -8,5 +8,13 @@
         lld
         lldb
         btop
+        vim
+        wget
+        git
+        stow
+        fastfetch
+        neovim
+        kitty
+        alacritty
     ];
 } 

@@ -20,6 +20,19 @@
             allow id 5986:118c
             allow id 05ac:026c
             allow id 05ac:0265
+            allow id 05e3:0626
+            allow id 05e3:0626
+            allow id 046d:085e
+            allow id 1d6b:0002
+            allow id 5986:118c
+            allow id 05e3:0610
+            allow id 8087:0033
+            allow id 25a4:9311
+            allow id 05e3:0610
+            allow id 0951:16df
+            allow id 1e7d:2e4a
+            allow id 1b1c:1bad
+            allow id 27c6:6594
         '';
     };
 

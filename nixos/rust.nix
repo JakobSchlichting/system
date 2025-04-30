@@ -6,26 +6,26 @@
     ];
     environment.systemPackages = with pkgs; [
         (rust-bin.fromRustupToolchainFile ./rust_toolchain.toml)
-            taplo #toml formatter & lsp
-            cargo-watch
-            cargo-deny
-            cargo-audit
-            cargo-update
-            cargo-edit
-            cargo-outdated
-            cargo-license
-            cargo-tarpaulin
-            cargo-cross
-            cargo-zigbuild
-            cargo-nextest
-            cargo-spellcheck
-            cargo-modules
-            cargo-bloat
-            cargo-unused-features
-            cargo-feature
-            cargo-features-manager
-            bacon
-            evcxr #rust repl
+        taplo #toml formatter & lsp
+        cargo-watch
+        cargo-deny
+        cargo-audit
+        cargo-update
+        cargo-edit
+        cargo-outdated
+        cargo-license
+        cargo-tarpaulin
+        cargo-cross
+        cargo-zigbuild
+        cargo-nextest
+        cargo-spellcheck
+        cargo-modules
+        cargo-bloat
+        cargo-unused-features
+        cargo-feature
+        cargo-features-manager
+        bacon
+        evcxr #rust repl
         sccache
     ];
 }
