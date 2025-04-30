@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-    networking.hostName = "soc_workstation";
-
     networking.wireless.iwd = {
         enable = true;
         settings = {

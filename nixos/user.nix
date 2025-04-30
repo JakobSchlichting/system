@@ -2,9 +2,9 @@
 
 {
     users.users = {
-        soc = {
+        js = {
             isNormalUser = true;
-            description = "SOC Analyst";
+            description = "Jakob Schlichting";
             extraGroups = [ "networkmanager" "wheel" ];
             packages = with pkgs; [];
         };

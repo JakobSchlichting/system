@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    imports = [ # Include the results of the hardware scan.
-        ./hardware_configuration.nix
-    ];
     networking.hostName = "soc_workstation"; # Define your hostname.
     services.xserver.xkb = {
         layout = "de";
