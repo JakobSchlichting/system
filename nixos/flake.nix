@@ -17,11 +17,11 @@
             modules = [
                 nix-flatpak.nixosModules.nix-flatpak
                 ./configuration.soc_workstation.nix
-		./hardware_configuration.soc_workstation.nix
+        		./hardware_configuration.soc_workstation.nix
                 ./bootloader.soc_workstation.nix
                 ./kernel.nix
                 ./hyprland.nix
-		./display_manager.nix
+                ./display_manager.nix
                 ./dev_tools.nix
                 ./shell.nix
                 ./opengl.nix
@@ -41,6 +41,7 @@
                 ./languages.nix
                 ./user.nix
                 ./legcord.nix
+                ./vm.nix
             ];
         };
 # INFO: home workstation
