@@ -2,6 +2,7 @@
 
 {
     environment.systemPackages = with pkgs; [
+        # LSP
         python311Packages.python-lsp-server
         nodePackages_latest.nodemon
         nodePackages_latest.typescript
@@ -24,5 +25,8 @@
         htmx-lsp
         nixd
         nixdoc
+
+        # Debugger
+        delve
     ];
 }

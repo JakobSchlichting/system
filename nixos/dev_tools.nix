@@ -5,6 +5,8 @@
         gnumake
         cmake
         gcc
+        air
+        go
         lld
         lldb
         btop
@@ -17,5 +19,7 @@
         neovim
         kitty
         alacritty
+        nodejs_23
+        pnpm
     ];
 } 
