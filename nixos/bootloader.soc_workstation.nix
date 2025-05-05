@@ -7,7 +7,7 @@
     boot.loader.timeout = 2;
     boot.initrd.enable = true;
     boot.initrd.systemd.enable = true;
-    boot.initrd.luks.devices."luks-91e451a0-2f16-4940-9c88-bd4b8c587b8c".device = "/dev/disk/by-uuid/91e451a0-2f16-4940-9c88-bd4b8c587b8c";
+    boot.initrd.luks.devices."luks-3548dfcb-2ed1-4e01-a573-6a36a5f0044c".device = "/dev/disk/by-uuid/3548dfcb-2ed1-4e01-a573-6a36a5f0044c";
     boot.consoleLogLevel = 3;
     boot.plymouth = {
         enable = true;
