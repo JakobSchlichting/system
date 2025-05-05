@@ -76,6 +76,7 @@
                 ./user.nix
                 ./legcord.nix
                 ./steam.nix
+                ./container.nix
             ];
         };
 # INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
