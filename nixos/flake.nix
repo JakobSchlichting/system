@@ -23,6 +23,12 @@
             };
             modules = [
                 nix-flatpak.nixosModules.nix-flatpak
+                ({ config, pkgs, inputs, ... }: {
+                    _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+                        system = "x86_64-linux";
+                        config.allowUnfree = true;
+                    };
+                })
                 ./configuration.soc_workstation.nix
         		./hardware_configuration.soc_workstation.nix
                 ./bootloader.soc_workstation.nix
@@ -49,6 +55,8 @@
                 ./user.nix
                 ./legcord.nix
                 ./vm.nix
+                ./cursor.nix
+                ./office.nix
             ];
         };
 # INFO: home workstation
@@ -57,6 +65,12 @@
 	        specialArgs = { inherit inputs; };
             modules = [
                 nix-flatpak.nixosModules.nix-flatpak
+                ({ config, pkgs, inputs, ... }: {
+                    _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+                        system = "x86_64-linux";
+                        config.allowUnfree = true;
+                    };
+                })
                 ./kernel.nix
                 ./configuration.home_workstation.nix
 		        ./hardware_configuration.home_workstation.nix
@@ -85,6 +99,7 @@
                 ./steam.nix
                 ./container.nix
                 ./cursor.nix
+                ./office.nix
             ];
         };
 # INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
