@@ -21,5 +21,6 @@
         alacritty
         nodejs_23
         pnpm
+        python3
     ];
 } 
