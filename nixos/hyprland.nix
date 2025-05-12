@@ -5,6 +5,7 @@
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
     environment.systemPackages = with pkgs; [
+        xdg-desktop-portal-hyprland
         hyprpicker
         hyprcursor
         hyprlock
@@ -13,6 +14,8 @@
         waybar
         wofi
         brightnessctl
+        swaynotificationcenter
+        udiskie
         alacritty
 # TODO: move the kde packages to a file manager file
         kdePackages.dolphin
@@ -22,5 +25,6 @@
         kdePackages.kio-extras
 # TODO: move this to browsers
         brave
+        inputs.zen-browser.packages."${system}".default
     ];
 }
