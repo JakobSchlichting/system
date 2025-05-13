@@ -18,6 +18,7 @@
         buf
         cmake-language-server
         docker-compose-language-service
+        texlab
         # vscode-extensions.vadimcn.vscode-lldb
         terraform-ls
         ansible-language-server
