@@ -12,6 +12,7 @@
         hyprpaper
         waybar
         wofi
+        brightnessctl
         alacritty
 # TODO: move the kde packages to a file manager file
         kdePackages.dolphin
