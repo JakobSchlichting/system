@@ -6,6 +6,12 @@
         rust-overlay.url = "github:oxalica/rust-overlay";
         templ.url = "github:a-h/templ";
         nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+        zen-browser = {
+            url = "github:0xc000022070/zen-browser-flake";
+# IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+# to have it up-to-date or simply don't specify the nixpkgs input  
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { self, nixpkgs, nixpkgs-unstable, nix-flatpak, ... }@inputs: {
@@ -100,6 +106,7 @@
                 ./container.nix
                 ./cursor.nix
                 ./office.nix
+                ./latex.nix
             ];
         };
 # INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
