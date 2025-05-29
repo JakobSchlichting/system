@@ -13,7 +13,6 @@
         "usbcore.autosuspend=-1"
         "video4linux"
         "acpi_rev_override=5"
-        "security=selinux"
     ];
     systemd.package = pkgs.systemd.override { withSelinux = true; };
     environment.systemPackages = with pkgs; [

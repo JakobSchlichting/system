@@ -1,10 +1,9 @@
 {
     description = "Jakob Schlichting NixOS configurations, delimited by hostname!";
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         rust-overlay.url = "github:oxalica/rust-overlay";
-        templ.url = "github:a-h/templ";
         nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
         zen-browser = {
             url = "github:0xc000022070/zen-browser-flake";

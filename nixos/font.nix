@@ -9,9 +9,8 @@
             # Persian Font
             vazir-fonts
             # Nerd Font
-            (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-            fira-code
-            jetbrains-mono
+            nerdfonts.fira-code
+            nerdfonts.jetbrains-mono
         ];
         fontconfig = {
             defaultFonts = {

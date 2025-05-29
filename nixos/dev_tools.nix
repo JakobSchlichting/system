@@ -19,7 +19,7 @@
         neovim
         kitty
         alacritty
-        nodejs_23
+        nodejs
         pnpm
         python3
     ];
