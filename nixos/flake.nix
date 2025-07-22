@@ -43,6 +43,7 @@
                 ./dev_tools.nix
                 ./shell.nix
                 ./opengl.nix
+                ./nvidia.nix
                 ./bluetooth.nix
                 ./font.nix
                 ./time.nix
