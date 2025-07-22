@@ -3,7 +3,7 @@
 {
     environment.systemPackages = with pkgs; [
         # LSP
-        python311Packages.python-lsp-server
+        python313Packages.python-lsp-server
         nodePackages_latest.nodemon
         nodePackages_latest.typescript
         nodePackages_latest.typescript-language-server
@@ -19,6 +19,7 @@
         cmake-language-server
         docker-compose-language-service
         texlab
+        ols
         # vscode-extensions.vadimcn.vscode-lldb
         terraform-ls
         ansible-language-server

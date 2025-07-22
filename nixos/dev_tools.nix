@@ -22,5 +22,6 @@
         nodejs
         pnpm
         python3
+        obs-studio
     ];
 } 

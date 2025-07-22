@@ -13,10 +13,50 @@
         oci-containers = {
             backend = "podman";
             containers = {
-                container-name = {
-                    image = "container-image";
+                postgres = {
+                    image = "docker.io/postgres:17.5";
+                    volumes = [
+                      "pg_data:/var/lib/postgresql/data"
+                    ];
+                    environment = {
+                        POSTGRES_USER = "admin";
+                        POSTGRES_PASSWORD = "admin";
+                    };
                     autoStart = true;
-                    ports = [ "127.0.0.1:1234:1234" ];
+                    ports = [ "0.0.0.0:5432:5432" ];
+                };
+                pgadmin = {
+                    image = "docker.io/dpage/pgadmin4:9.4.0";
+                    volumes = [
+                      "pg_admin_data:/var/lib/pgadmin"
+                    ];
+                    environment = {
+                        PGADMIN_DEFAULT_EMAIL = "contact@schlichting.dev";
+                        PGADMIN_DEFAULT_PASSWORD = "admin";
+                    };
+                    autoStart = true;
+                    ports = [
+                      "127.0.0.1:9876:80"
+                    ];
+                };
+# TODO: move this to cluster
+                semaphore = {
+                    image = "semaphoreui/semaphore:v2.15.0";
+                    volumes = [
+                        "semaphore_data:/var/lib/semaphore"
+                        "semaphore_config:/etc/semaphore"
+                    ];
+                    environment = {
+# TODO: use the postgres db at some point
+                        SEMAPHORE_DB_DIALECT = "bolt";
+                        SEMAPHORE_ADMIN = "admin";
+                        SEMAPHORE_ADMIN_PASSWORD = "changeme";
+                        SEMAPHORE_ADMIN_NAME = "Admin";
+                        SEMAPHORE_ADMIN_EMAIL = "contact@schlichting.dev";
+                    };
+                    ports = [
+                      "127.0.0.1:9001:3000"
+                    ];
                 };
             };
         };
@@ -25,7 +65,12 @@
     environment.systemPackages = with pkgs; [
         dive # look into docker image layers
         podman-tui # status of containers in the terminal
+        kubectl
 # docker-compose # start group of containers for dev
 # podman-compose # start group of containers for dev
     ];
+    networking.firewall = {
+        enable = true;
+        allowedTCPPorts = [ 5432 ];
+    };
 }
