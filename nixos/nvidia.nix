@@ -5,6 +5,7 @@
     hardware.nvidia-container-toolkit.enable = true;
 
     hardware.nvidia = {
+        open = true;
         modesetting.enable = true;
         #TODO: eventually try to fix power management instead of disabeling it
         powerManagement.enable = false;
