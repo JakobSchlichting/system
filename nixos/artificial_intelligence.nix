@@ -9,6 +9,6 @@
     environment.systemPackages = [
         (pkgs-unstable.ollama.override { 
             acceleration = "cuda";
-            })
-  ];
+        })
+    ];
 }
