@@ -23,6 +23,5 @@
         pnpm
         python3
         pandoc
-        obs-studio
     ];
 } 

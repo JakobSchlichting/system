@@ -1,7 +1,9 @@
-{ pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
-    environment.systemPackages = with pkgs-unstable; [
-        code-cursor
+    environment.systemPackages =  [
+        pkgs-unstable.code-cursor
+        pkgs-unstable.opencode
+        pkgs.lmstudio
     ];
 }

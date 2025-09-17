@@ -12,6 +12,12 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "amdgpu"];
   boot.extraModulePackages = [ ];
+  boot.plymouth = {
+      enable = true;
+      font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+      themePackages = [ pkgs.catppuccin-plymouth ];
+      theme = "catppuccin-macchiato";
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/e8d6cbd0-8ac8-4a9d-ad1b-6b85874c87a5";
