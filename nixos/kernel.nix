@@ -2,7 +2,7 @@
 
 {
 # Linux Kernel
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_hardened;
     boot.kernelParams = [ 
         "splash"
         "quiet"
