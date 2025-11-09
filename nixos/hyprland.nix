@@ -26,5 +26,6 @@
 # TODO: move this to browsers
         brave
         inputs.zen-browser.packages."${system}".default
+        chromium
     ];
 }

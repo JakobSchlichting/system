@@ -107,6 +107,7 @@
                 ./cursor.nix
                 ./office.nix
                 ./latex.nix
+                ./vm.nix
             ];
         };
 # INFO: systems with the hostname nixos are assumed to be general purpose virtual machines
