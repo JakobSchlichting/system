@@ -7,3 +7,8 @@ source "$HOME/.config/zsh/completion.zsh"
 eval "$(starship init zsh)"
 
 fastfetch
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/js/.lmstudio/bin"
+# End of LM Studio CLI section
+

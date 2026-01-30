@@ -71,10 +71,10 @@ cursor = "#B7BDF8"
 text = "#24273A"
 
 [font]
-size = 16
+size = 14
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [window]
 opacity = 0.8

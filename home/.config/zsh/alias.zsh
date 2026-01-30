@@ -32,3 +32,14 @@ if command -v bat &> /dev/null
 then
     alias cat='bat'
 fi
+
+if command -v podman &> /dev/null
+then
+    alias butane='podman run \
+        --rm \
+        --interactive \
+        --security-opt label=disable \
+        --volume "${PWD}:/pwd" \
+        --workdir /pwd \
+        quay.io/coreos/butane:release'
+fi
