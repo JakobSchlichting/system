@@ -10,7 +10,23 @@ then
     TMUXIFIER_SOURCE_DIRS="$HOME/source"
 fi
 
-session=$(find $TMUXIFIER_SOURCE_DIRS -mindepth 1 -maxdepth 1 -type d | fzf)
+# Parse command line options
+while getopts "d:" opt; do
+    case $opt in
+        d) directory="$OPTARG" ;;
+        *) echo "Usage: $0 [-d directory]" >&2; exit 1 ;;
+    esac
+done
+
+if [ -n "$directory" ]; then
+    # Resolve the directory path
+    if ! session=$(cd "$directory" 2>/dev/null && pwd); then
+        echo "Directory '$directory' does not exist or is not accessible!" >&2
+        exit 1
+    fi
+else
+    session=$(find $TMUXIFIER_SOURCE_DIRS -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
 
 if [[ -z $session ]]; then
     echo "No folder selected! Exiting..." >&2
