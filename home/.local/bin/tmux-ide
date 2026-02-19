@@ -1,0 +1,36 @@
+#!/bin/sh
+# Author: Jakob Schlichting
+# Description: Opens a tmux dev session with neovim, opencode, and shell
+
+session_name="$1"
+session_path="${2:-$PWD}"
+
+if [ -z "$session_name" ]; then
+    echo "Usage: $0 <session_name> [path]" >&2
+    exit 1
+fi
+
+if tmux has-session -t "$session_name" 2>/dev/null; then
+    if [ -z "$TMUX" ]; then
+        tmux attach -t "$session_name"
+    else
+        tmux switch-client -t "$session_name"
+    fi
+    exit 0
+fi
+
+tmux new-session -s "$session_name" -c "$session_path" -d || exit 1
+
+tmux split-window -h -t "$session_name"
+tmux split-window -v -t "$session_name"
+
+tmux send-keys -t "$session_name:1.1" "nvim" Enter
+tmux send-keys -t "$session_name:1.2" "opencode" Enter
+
+tmux select-pane -t "$session_name:1.1"
+
+if [ -z "$TMUX" ]; then
+    tmux attach -t "$session_name"
+else
+    tmux switch-client -t "$session_name"
+fi

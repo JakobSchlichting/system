@@ -11,10 +11,11 @@ then
 fi
 
 # Parse command line options
-while getopts "d:" opt; do
+while getopts "d:s" opt; do
     case $opt in
         d) directory="$OPTARG" ;;
-        *) echo "Usage: $0 [-d directory]" >&2; exit 1 ;;
+        s) scripted=1 ;;
+        *) echo "Usage: $0 [-d directory] [-s]" >&2; exit 1 ;;
     esac
 done
 
@@ -37,7 +38,12 @@ session_basename=$(basename "$session" | tr . _)
 
 if ! tmux has-session -t "$session_basename" 2> /dev/null
 then
-    tmux new-session -s "$session_basename" -c "$session" -d
+    if [ -n "$scripted" ]; then
+        tmux-ide "$session_basename" "$session"
+        exit 0
+    else
+        tmux new-session -s "$session_basename" -c "$session" -d
+    fi
 fi
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]
