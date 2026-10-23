@@ -74,7 +74,7 @@ text = "#24273A"
 size = 14
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrains Mono"
 
 [window]
 opacity = 0.8
