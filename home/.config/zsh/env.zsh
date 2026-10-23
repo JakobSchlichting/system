@@ -30,3 +30,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 # Mac llvm 14, required by odin lang
 export PATH="/opt/homebrew/opt/llvm@14/bin:$PATH"
+
+[ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
