@@ -49,7 +49,7 @@ nvim.bak
 packer_compiled.lua
 
 # Tmux tmp packages
-tmux/.config/tmux/plugins
+home/.config/tmux/plugins
 
 # Directories which may exist due to optimistic stow symlinks
 home/.cargo/.global-cache
