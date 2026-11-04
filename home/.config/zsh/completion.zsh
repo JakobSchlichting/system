@@ -14,3 +14,9 @@ fi
 if [ $command[kubectl] ]; then
     source <(kubectl completion zsh)
 fi
+
+# mise completion, when mise exists
+if [ $command[mise] ]; then
+    source <(mise completion zsh)
+fi
+
