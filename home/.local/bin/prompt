@@ -1,0 +1,51 @@
+#!/bin/zsh
+# Opens nvim to write a prompt and saves it as <utc_timestamp>_<short-description>.md
+# Usage: prompt [target_dir]   (defaults to $PROMPT_DIR or the current directory)
+
+target_dir="${${1:-${PROMPT_DIR:-$PWD}}%/}"
+model="${PROMPT_MODEL:-tk-inline/Qwen3.8-27B}"
+
+if ! mkdir -p "$target_dir"; then
+  echo "Could not create target directory: $target_dir" >&2
+  exit 1
+fi
+
+timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
+tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/prompt.XXXXXX")" || exit 1
+tmp_file="$tmp_dir/prompt.md"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+nvim "$tmp_file"
+
+if [[ ! -s "$tmp_file" ]] || ! grep -q '[^[:space:]]' "$tmp_file"; then
+  echo "Prompt is empty, nothing saved." >&2
+  exit 1
+fi
+
+instruction="Summarize the following prompt as a short file name description of 2 to 6 words. \
+Respond with ONLY the description in lowercase kebab-case (e.g. fix-login-redirect-bug), \
+no quotes, no file extension, no explanation.
+
+<prompt>
+$(<"$tmp_file")
+</prompt>"
+
+echo "Generating description..." >&2
+raw="$(opencode run --auto --archived --model "$model" "$instruction" 2>/dev/null)"
+
+# Take the last non-empty line and turn it into a safe kebab-case slug.
+slug="$(print -r -- "$raw" \
+  | sed 's/\x1b\[[0-9;]*[a-zA-Z]//g' \
+  | grep -v '^[[:space:]]*$' \
+  | tail -n 1 \
+  | tr '[:upper:]' '[:lower:]' \
+  | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//' \
+  | cut -c1-60 \
+  | sed -E 's/-+$//')"
+
+[[ -z "$slug" ]] && slug="untitled"
+
+file="$target_dir/${timestamp}_${slug}.md"
+mv "$tmp_file" "$file" || exit 1
+
+echo "$file"

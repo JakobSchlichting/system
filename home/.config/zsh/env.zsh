@@ -32,3 +32,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="/opt/homebrew/opt/llvm@14/bin:$PATH"
 
 [ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
+
+export PROMPT_DIR="$HOME/.prompt"
