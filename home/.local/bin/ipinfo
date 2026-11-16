@@ -1,0 +1,134 @@
+#!/usr/bin/env lua
+
+local function usage()
+  io.stderr:write("Usage: ipinfo <ip> [-o <file> | --output <file>]\n")
+end
+
+local function shell_quote(value)
+  return "'" .. tostring(value):gsub("'", "'\\''") .. "'"
+end
+
+local function is_valid_ipv4(ip)
+  local a, b, c, d = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$")
+  if not a then
+    return false
+  end
+
+  for _, part in ipairs({ a, b, c, d }) do
+    local num = tonumber(part)
+    if not num or num < 0 or num > 255 then
+      return false
+    end
+  end
+
+  return true
+end
+
+local function is_valid_ipv6(ip)
+  if ip == "" or ip:find("[^%x:]") then
+    return false
+  end
+
+  local double_colons = 0
+  for _ in ip:gmatch("::") do
+    double_colons = double_colons + 1
+    if double_colons > 1 then
+      return false
+    end
+  end
+
+  local segments = 0
+  for segment in ip:gmatch("[^:]+") do
+    if #segment > 4 then
+      return false
+    end
+    segments = segments + 1
+  end
+
+  if ip:find("::", 1, true) then
+    return segments < 8
+  end
+
+  return segments == 8
+end
+
+local function is_valid_ip(ip)
+  return is_valid_ipv4(ip) or is_valid_ipv6(ip)
+end
+
+local ip
+local output_path
+
+local i = 1
+while i <= #arg do
+  local current = arg[i]
+
+  if current == "-o" or current == "--output" then
+    i = i + 1
+    output_path = arg[i]
+    if not output_path or output_path == "" then
+      io.stderr:write("Missing output file path.\n")
+      usage()
+      os.exit(1)
+    end
+  elseif current == "-h" or current == "--help" then
+    usage()
+    os.exit(0)
+  elseif current:sub(1, 1) == "-" then
+    io.stderr:write("Unknown option: " .. current .. "\n")
+    usage()
+    os.exit(1)
+  elseif not ip then
+    ip = current
+  else
+    io.stderr:write("Unexpected argument: " .. current .. "\n")
+    usage()
+    os.exit(1)
+  end
+
+  i = i + 1
+end
+
+if not ip then
+  io.stderr:write("Missing IP address.\n")
+  usage()
+  os.exit(1)
+end
+
+if not is_valid_ip(ip) then
+  io.stderr:write("Invalid IP address: " .. ip .. "\n")
+  os.exit(1)
+end
+
+local command = "curl --silent --show-error --fail " .. shell_quote("https://ipinfo.io/" .. ip)
+local handle = io.popen(command, "r")
+
+if not handle then
+  io.stderr:write("Failed to execute curl.\n")
+  os.exit(1)
+end
+
+local response = handle:read("*a")
+local ok, _, exit_code = handle:close()
+
+if not ok then
+  io.stderr:write("Request failed")
+  if exit_code then
+    io.stderr:write(" with exit code " .. tostring(exit_code))
+  end
+  io.stderr:write(".\n")
+  os.exit(1)
+end
+
+if output_path then
+  local file, err = io.open(output_path, "w")
+  if not file then
+    io.stderr:write("Failed to open output file: " .. tostring(err) .. "\n")
+    os.exit(1)
+  end
+
+  file:write(response)
+  file:close()
+else
+  io.write(response)
+end

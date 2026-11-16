@@ -20,3 +20,8 @@ if [ $command[mise] ]; then
     source <(mise completion zsh)
 fi
 
+# OpenCode completion, when opencode exists
+if [ $commands[opencode] ]; then
+    source <(opencode --completions zsh)
+fi
+

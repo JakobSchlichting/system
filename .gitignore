@@ -58,3 +58,7 @@ home/.cargo/.package-cache-mutate
 home/.cargo/registry/
 home/.local/share/
 home/.local/state/
+home/.cargo/bin/
+home/.cargo/git/
+home/.cargo/.crates.toml
+home/.cargo/.crates2.json
