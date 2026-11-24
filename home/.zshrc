@@ -6,6 +6,7 @@ if [[ -z "$TMUX" ]] && command -v tmux >/dev/null 2>&1; then
   fi
 fi
 source "$HOME/.config/zsh/alias.zsh"
+source "$HOME/.config/zsh/attack_tools.zsh"
 source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/opts.zsh"
 source "$HOME/.config/zsh/env.zsh"
